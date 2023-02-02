@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <link href="../static/styles/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../static/styles/style.css" rel="stylesheet" />
+    <link href="../static/styles/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
+    <script src="../static/scripts/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+    <!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script> -->
+  </head>
+
+<body>
+    <nav
+      class="navbar navbar-light"
+      style="background-color: #593e8e; display: flex"
+    >
+      <div class="container-fluid">
+        <img
+          src="../static/Lambton_Logo.png"
+          alt="Lambton Logo"
+          width="150"
+          height="80"
+          style="justify-content: left"
+        />
+        <a
+          class="text-white navbar-brand"
+          href="#"
+          style="
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 16px;
+            font-weight: bold;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            color: whitesmoke;
+          "
+          >Mapping ICD 11 Codes for Medical Records Using Named Entity
+          Recognition</a
+        >
+
+        <!-- <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Features</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Pricing</a>
+              </li>
+            </ul>
+            <span class="navbar-text">
+              Navbar text with an inline element
+            </span>
+          </div> -->
+      </div>
+    </nav>
+    <form>
+      <!-- <div id="loading">Loading...</div> -->
+
+      <div class="container">
+        <div class="row mt-5">
+          <div class="col-md-2"></div>
+          <div class="col-md-8">
+            <table
+              id="detail-table"
+              class="table table-striped"
+              style="border: none"
+            >
+              <tbody>
+                <tr class="table-heading">
+                  <td style="font-weight: bold">Program</td>
+                  <td>Artificial Intelligence and Machine Learning</td>
+                </tr>
+                <tr>
+                  <td style="font-weight: bold">Course</td>
+                  <td>
+                    <i>2022S AML 2404 1 [B121] AI and ML Lab</i>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-weight: bold">Group Name</td>
+                  <td>Team - Unicorn</td>
+                </tr>
+
+                <tr>
+                  <td rowspan="4" style="font-weight: bold">
+                    Student Name/Student Ids
+                  </td>
+                  <td>Aswin Prabhakaran (C0846893)</td>
+                  <td>
+                    <tr>
+                      <td>Deekshith Pothedar (C0851255)</td>
+                    </tr>
+                    <tr>
+                      <td>Harshad Patil (C0852307)</td>
+                    </tr>
+                    <tr>
+                      <td>Varsha Agarwal (C0849540)</td>
+                    </tr>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-weight: bold">Faculty Supervisor</td>
+                  <td>Dr. Parisa Naraei</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="col-md-2"></div>
+        </div>
+        <div class="row mt-5">
+          <div class="col-md-2">
+            <label for="txtsearch" style="font-weight: bold"
+              >Medical History:</label
+            ><br />
+          </div>
+
+          <div class="col">
+            <textarea
+              id="txtsearch"
+              name="txtsearch"
+              class="form-control"
+              style="height: 120px; width: 350px"
+            ></textarea>
+            <input
+              id="btn_submit"
+              value="Submit"
+              type="button"
+              class="clsbtn btn btn-secondary mt-3"
+            />
+            <input
+              id="btn_clear"
+              value="Clear"
+              type="button"
+              class="clsbtn btn btn-secondary mt-3"
+              onClick="location.href=location.href"
+            />
+          </div>
+
+          <div class="col" style="border: 1px solid lightgray; font-size: 12px">
+            <p>
+              <i><b>Sample Text:</b></i> A disease of the brain, caused by an
+              infection with flavivirus. This disease is characterised by fever,
+              headache, meningism, hyperexcitability, or decreased
+              consciousness. This disease may also present with neurological
+              signs such as cranial nerve palsies, tremor and ataxia,
+              parkinsonism, or upper limb paralysis. Transmission is through the
+              bite of an infected mosquito. Confirmation is by identification of
+              flavivirus in a serum sample or cerebrospinal fluid.Japanese
+              encephalitis is an arboviral disease (a disease due to a virus
+              transmitted by an arthropod) caused by a flavivirus spread by wild
+              birds, amplified by domestic pigs, and transmitted to humans
+              mainly by a mosquito of the genus Culex. Infected individuals
+              present with signs ranging from moderate with a headache and
+              low-grade fever to more severe infection with high fever,
+              meningeal syndrome (neck stiffness, vomiting), disorientation and
+              sometimes tremors or coma. The disease, when it is symptomatic,
+              can leave neurological sequelae and leads to death in 25 to 30% of
+              the cases.
+            </p>
+          </div>
+        </div>
+
+        <div class="row mt-5">
+          <div class="col">
+            <table
+              id="example"
+              class="table table-striped"
+              style="width: 100%"
+            ></table>
+          </div>
+        </div>
+        <div id="loader">
+          <div
+            style="
+              margin-right: auto;
+              margin-left: auto;
+              margin-bottom: auto;
+              margin-top: auto;
+              align-items: center;
+            "
+          ></div>
+        </div>
+      </div>
+    </form>
+  </body>
+
+ <script type="text/javascript">
+
+  var sentence = '';
+  var clear = document.getElementById("btn_clear");
+
+  $(document).ready(function () {
+
+      document.getElementById("btn_clear").style.display ="none";
+      return false;
+  })
+
+  $('#btn_submit').on('click',function(){
+
+      if(document.getElementById("txtsearch").value == '')
+      {
+          alert("Please Enter Medical History");
+          return false;
+      }
+
+      const sentence = {"sentence": $("#txtsearch").val()}
+      console.log(JSON.stringify(sentence))
+
+      $("#loader").addClass("loader");
+
+
+      $.ajax({
+        type: "POST",
+        url: "http://localhost:3000/get_icd11_codes_for_sentence",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        data: JSON.stringify(sentence),
+        success: function (response) {
+          console.log("This is response", response);
+
+          $("#loader").removeClass("loader");
+
+          // let Jsonstring =
+          //   '{"predictions":{"coma":[[0.0625,"MB20.1"],[0.03225806451612903,"MB20.0"],[0.03125,"5A00.21"]],"encephalitis":[[0.0625,"1D00.Z"],[0.03225806451612903,"1C81"],[0.03225806451612903,"1D01.Y"]],"fever":[[0.0625,"MG26"],[0.03125,"1A07.Z"],[0.03125,"1A08"]],"flavivirus":[[0.02127659574468085,"1C80"]],"headache":[[0.03225806451612903,"MB4D"],[0.02127659574468085,"8A82"],[0.02127659574468085,"8A83"]],"hyperexcitability":[[0.012658227848101266,"8C7Y"],[0.007042253521126761,"8E4A.3"]],"meningism":[[0.0625,"1D01.Y"],[0.03225806451612903,"8E41.Z"],[0.03125,"1A07.Y"]],"paralysis":[[0.03125,"8A00.Z"],[0.03125,"8C74.1Z"],[0.03125,"9A03.42"]],"parkinsonism":[[0.0625,"8A00.Z"],[0.0625,"8A00.0Z"],[0.03225806451612903,"8A00.Y"]],"vomiting":[[0.0625,"MD90.1"],[0.03125,"1A23"],[0.03125,"MD90"]]}}';
+
+          let array = response; //JSON.parse(response);
+          console.log("This is array", array);
+
+          let topScorer = Object.values(array.predictions)[0];
+          console.log("topScorer", topScorer[0][0]);
+
+          var keys = Object.keys(array.predictions),
+            columns = [];
+          for (var i = 0; i < keys.length; i++) {
+            columns.push({
+              entity: keys[i],
+              topScore1: Object.values(array.predictions)[i][0]
+                ? Object.values(array.predictions)[i][0][0]
+                  ? Object.values(array.predictions)[i][0][0]
+                  : 0
+                : 0,
+
+              topCode1: Object.values(array.predictions)[i][0][1]
+                ? Object.values(array.predictions)[i][0][1]
+                : 0,
+              topScore2: Object.values(array.predictions)[i][1]
+                ? Object.values(array.predictions)[i][1][0]
+                  ? Object.values(array.predictions)[i][1][0]
+                  : 0
+                : 0,
+              topCode2: Object.values(array.predictions)[i][1]
+                ? Object.values(array.predictions)[i][1][1]
+                  ? Object.values(array.predictions)[i][1][1]
+                  : 0
+                : 0,
+              topScore3: Object.values(array.predictions)[i][2]
+                ? Object.values(array.predictions)[i][2][0]
+                  ? Object.values(array.predictions)[i][2][0]
+                  : 0
+                : 0,
+              topCode3: Object.values(array.predictions)[i][2]
+                ? Object.values(array.predictions)[i][2][1]
+                  ? Object.values(array.predictions)[i][2][1]
+                  : 0
+                : 0,
+            });
+          }
+          debugger;
+          $("#example").DataTable({
+            data: columns,
+            columns: [
+              { title: "Entity", data: "entity" },
+              { title: "Top Score 1", data: "topScore1" },
+              { title: "Top Code 1", data: "topCode1" },
+              { title: "Top Score 2", data: "topScore2" },
+              { title: "Top Code 2", data: "topCode2" },
+              { title: "Top Score 3", data: "topScore3" },
+              { title: "Top Code 3", data: "topCode3" },
+            ],
+          });
+
+          document.getElementById("btn_submit").style.display ="none"
+          document.getElementById("btn_clear").style.display ="block"
+        },
+        failure: function (response) {
+          alert(response.responseText);
+          alert("Failure");
+        },
+        error: function (response) {
+          alert(response);
+          alert("Error");
+        },
+      });
+      
+    });
+
+    
+  </script>
+</html>
